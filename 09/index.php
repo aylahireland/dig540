@@ -1,19 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  </head>
-  <body>
-  <style> div{background-color:green; }
-    </style>
-    <h1>Hello, world!</h1>
-    <p style="color: orange; font-size:2cm;"></p>
+
 <?php
   error_reporting(E_ALL); 
   ini_set("display_errors", 1); 
@@ -52,78 +37,43 @@
         }
     }
 
-    public function setData(){
-
+    public function setData($data_row){
+	$this->setArtist($data_row[3]);
+	$this->setTitle($data_row[2]);
+	$this->setRank($data_row[0]);
+	$this->setYear($data_row[1]);
+	$this->setGenres($data_row[4]);
+	$this->setSubgenres($data_row[5]);
     }
 
     public function getData(){
-
+	$this->getTitle();
+	$this->getYear();
+	$this->getRank();
+	$this->getArtist();
+	$this->getGenres();
+	$this->getSubgenres();
     }
-
-
 }
 $file_handle = fopen('./albumlist.csv', 'r');
-
 $first_line = fgetcsv($file_handle);
 for($i=0; $i<count($first_line); $i++){ 
-   
-    print_r('Column header found: '.$first_line[$i].'<br>');
+   print_r('Column header found: '.$first_line[$i].'<br>');
 }
-// $albums = array();
+$albums = array();
     
-//     while($data_row = fgetcsv($file_handle)){
-//         $album = new Album();
-//         $album->setArtist($data_row[3]);
-//         $album->setTitle($data_row[2]);
-//         $album->setRank($data_row[0]);
-//         $album->setYear($data_row[1]);
-//         $album->setGenres($data_row[4]);
-//         $album->setSubgenres($data_row[5]);
-//         array_push($albums, $album);
-//     }
+	while($data_row = fgetcsv($file_handle)){
+		$album = new Album();
+		$album->setData($data_row);
+		array_push($albums, $album);
+	}
 
-//     for($i=count($albums)-1; $i>=0; $i--){
-//         print_r("<p>This is the #$i album:<br>");
+	for($i=count($albums)-1; $i>=0; $i--){
+		print_r("<p>This is the #$i album:<br>");
+		$albums[$i]->getData();
+	   	print_r('</p>');
+	}
 
-//         $albums[$i]->getData();
-
-//         // $albums[$i]->getTitle();
-//         // $albums[$i]->getYear();
-//         // $albums[$i]->getRank();
-//         // $albums[$i]->getArtist();
-//         // $albums[$i]->getGenres();
-//         // $albums[$i]->getSubgenres();
-//         print_r('</p>');
-//     }
-
-// while($data_row = fgetcsv($file_handle)){
-    
-//     print_r("<p> This is the #$data_row[0] album:<br>");
-    
-//     for($i=1; $i<count($data_row); $i++){
-        
-//         if($i < 4){
-//             print_r("$first_line[$i]: $data_row[$i]<br>");
-//         } else {
-            
-//             $genres = str_getcsv($data_row[$i]);
-//             for($j=0; $j<count($genres); $j++){
-//                 print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
-                
-//             }
-
-//         }
-//     }
-//     print_r('<p>');
-// }
 fclose($file_handle);
 
 ?>
- <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  
-  </body>
-</html>
