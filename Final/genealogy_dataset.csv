@@ -2,7 +2,7 @@ ID,	Name,	        Relationship,	        Document,
 0,	Aylah Ireland,	Daughter; Wife; Mother,	birth_cert; marriage_cert; birth_cert; img
 1,	Mitzi Blood,	Mother; Wife; Daughter,	birth_cert; marriage_cert; img
 2,	Michael Botelho,	Husband; Father; Deceased,	marriage_cert; birth_cert; death_cert; img
-3,	Steve Ireland.	Father; Son,	birth_cert; birth_cert
+3,	Steve Ireland,	Father; Son,	birth_cert; birth_cert
 4,	George Ireland,	Father; Husband; Son; Deceased,	birth_cert; marriage_cert; death_cert; img
 5,	Kathleen Coffin,	Mother; Wife; Daughter; Deceased,	birth_cert; marriage_cert; death_cert; img
 6,	David Walsh,	Husband; Father,	marriage_cert; birth_cert; img
